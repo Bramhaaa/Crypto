@@ -1,0 +1,14 @@
+CXX = g++
+CXXFLAGS = -std=c++11 -Wall
+OBJS = hill_cipher.o rsa.o hybrid_main.o utils.o
+
+all: hybrid_main
+
+%.o: %.cpp
+	$(CXX) $(CXXFLAGS) -c $<
+
+hybrid_main: $(OBJS)
+	$(CXX) $(CXXFLAGS) -o hybrid_main $(OBJS)
+
+clean:
+	rm -f *.o hybrid_main
