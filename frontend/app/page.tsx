@@ -1,6 +1,6 @@
-import Link from "next/link"
-import { ArrowRight, Lock, Shield, Zap } from "lucide-react"
-import { Button } from "@/components/ui/button"
+import Link from "next/link";
+import { ArrowRight, Lock, Shield, Zap } from "lucide-react";
+import { Button } from "@/components/ui/button";
 
 export default function Home() {
   return (
@@ -11,13 +11,24 @@ export default function Home() {
           <span className="font-bold">HybridCrypt</span>
         </Link>
         <nav className="ml-auto flex gap-4 sm:gap-6">
-          <Link href="/" className="text-sm font-medium hover:underline underline-offset-4">
+          <Link
+            href="/"
+            className="text-sm font-medium hover:underline underline-offset-4"
+          >
             Home
           </Link>
-          <Link href="/encrypt" className="text-sm font-medium hover:underline underline-offset-4">
+          <Link
+            href="/encrypt"
+            className="text-sm font-medium hover:underline underline-offset-4"
+          >
             Encrypt
           </Link>
-          <Link href="#about" className="text-sm font-medium hover:underline underline-offset-4">
+          <Link
+            href="https://github.com/Bramhaaa/Crypto"
+            target="_blank"
+            rel="noopener noreferrer"
+            className="text-sm font-medium hover:underline underline-offset-4"
+          >
             About
           </Link>
         </nav>
@@ -32,8 +43,10 @@ export default function Home() {
                     Secure Your Messages with Hybrid Cryptography
                   </h1>
                   <p className="max-w-[600px] text-gray-500 md:text-xl dark:text-gray-400">
-                    Combining the power of Hill Cipher and RSA encryption for enhanced security and performance. Protect
-                    your sensitive information with our state-of-the-art hybrid encryption system.
+                    Combining the power of Hill Cipher and RSA encryption for
+                    enhanced security and performance. Protect your sensitive
+                    information with our state-of-the-art hybrid encryption
+                    system.
                   </p>
                 </div>
                 <div className="flex flex-col gap-2 min-[400px]:flex-row">
@@ -43,8 +56,15 @@ export default function Home() {
                       <ArrowRight className="ml-2 h-4 w-4" />
                     </Button>
                   </Link>
-                  <Link href="#about">
-                    <Button variant="outline" className="inline-flex items-center justify-center">
+                  <Link
+                    href="https://github.com/Bramhaaa/Crypto"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                  >
+                    <Button
+                      variant="outline"
+                      className="inline-flex items-center justify-center"
+                    >
                       Learn More
                     </Button>
                   </Link>
@@ -56,7 +76,9 @@ export default function Home() {
                   <div className="relative flex flex-col items-center text-center space-y-4">
                     <Lock className="h-16 w-16 text-gray-900 dark:text-gray-100" />
                     <div className="bg-white dark:bg-gray-950 rounded-lg p-4 shadow-lg">
-                      <code className="text-sm font-mono">Encrypted: X7f2Qp9rT5sL8zK3</code>
+                      <code className="text-sm font-mono">
+                        Encrypted: X7f2Qp9rT5sL8zK3
+                      </code>
                     </div>
                   </div>
                 </div>
@@ -65,14 +87,19 @@ export default function Home() {
           </div>
         </section>
 
-        <section id="about" className="w-full py-12 md:py-24 lg:py-32 bg-gray-50 dark:bg-gray-900">
+        <section
+          id="about"
+          className="w-full py-12 md:py-24 lg:py-32 bg-gray-50 dark:bg-gray-900"
+        >
           <div className="container px-4 md:px-6">
             <div className="flex flex-col items-center justify-center space-y-4 text-center">
               <div className="space-y-2">
-                <h2 className="text-3xl font-bold tracking-tighter sm:text-4xl md:text-5xl">How It Works</h2>
+                <h2 className="text-3xl font-bold tracking-tighter sm:text-4xl md:text-5xl">
+                  How It Works
+                </h2>
                 <p className="max-w-[900px] text-gray-500 md:text-xl/relaxed lg:text-base/relaxed xl:text-xl/relaxed dark:text-gray-400">
-                  Our hybrid cryptography system combines symmetric and asymmetric encryption for optimal security and
-                  performance.
+                  Our hybrid cryptography system combines symmetric and
+                  asymmetric encryption for optimal security and performance.
                 </p>
               </div>
             </div>
@@ -84,8 +111,8 @@ export default function Home() {
                 <div className="space-y-2">
                   <h3 className="text-xl font-bold">Hill Cipher</h3>
                   <p className="text-gray-500 dark:text-gray-400">
-                    A symmetric encryption algorithm that uses matrix multiplication to transform plaintext into
-                    ciphertext.
+                    A symmetric encryption algorithm that uses matrix
+                    multiplication to transform plaintext into ciphertext.
                   </p>
                 </div>
               </div>
@@ -96,7 +123,8 @@ export default function Home() {
                 <div className="space-y-2">
                   <h3 className="text-xl font-bold">RSA Encryption</h3>
                   <p className="text-gray-500 dark:text-gray-400">
-                    An asymmetric encryption algorithm that securely encrypts the Hill Cipher key for transmission.
+                    An asymmetric encryption algorithm that securely encrypts
+                    the Hill Cipher key for transmission.
                   </p>
                 </div>
               </div>
@@ -107,7 +135,8 @@ export default function Home() {
                 <div className="space-y-2">
                   <h3 className="text-xl font-bold">Hybrid Approach</h3>
                   <p className="text-gray-500 dark:text-gray-400">
-                    Combines the speed of symmetric encryption with the security of asymmetric encryption.
+                    Combines the speed of symmetric encryption with the security
+                    of asymmetric encryption.
                   </p>
                 </div>
               </div>
@@ -117,17 +146,16 @@ export default function Home() {
       </main>
       <footer className="flex flex-col gap-2 sm:flex-row py-6 w-full shrink-0 items-center px-4 md:px-6 border-t">
         <p className="text-xs text-gray-500 dark:text-gray-400">
-          © {new Date().getFullYear()} HybridCrypt. All rights reserved.
         </p>
         <nav className="sm:ml-auto flex gap-4 sm:gap-6">
           <Link href="#" className="text-xs hover:underline underline-offset-4">
-            Terms of Service
+
           </Link>
           <Link href="#" className="text-xs hover:underline underline-offset-4">
-            Privacy
+
           </Link>
         </nav>
       </footer>
     </div>
-  )
+  );
 }

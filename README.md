@@ -40,18 +40,20 @@ The project is divided into two main components:
 ### Clone the Repository
 
 ```bash
-git clone <repository-url>
+git clone https://github.com/Bramhaaa/Crypto
 cd crypto
 ```
 
 ### Backend Setup
 
 1. Navigate to the backend directory:
+
    ```bash
    cd backend
    ```
 
 2. Create the include directory and download required libraries (if not already present):
+
    ```bash
    mkdir -p include
    cd include
@@ -68,6 +70,7 @@ cd crypto
 ### Frontend Setup
 
 1. Navigate to the frontend directory:
+
    ```bash
    cd ../frontend
    ```
@@ -87,6 +90,7 @@ cd backend
 ```
 
 By default, the server listens on port 5001. You should see:
+
 ```
 Server is running on http://localhost:5001
 ```
@@ -113,10 +117,12 @@ The frontend will be accessible at http://localhost:3000
 ## API Endpoints
 
 ### GET /api/test
+
 - Tests if the backend server is running
 - Returns: "Backend is working!"
 
 ### POST /api/encrypt
+
 - Encrypts a message using the hybrid encryption system
 - Request body:
   ```json
@@ -172,7 +178,7 @@ The frontend will be accessible at http://localhost:3000
 - Encrypts pairs of letters at a time
 - Operates in the mod 26 space (A-Z alphabet)
 
-### RSA 
+### RSA
 
 - Uses standard RSA algorithm for key encryption
 - Parameters p, q, e, and n determine the security level
@@ -189,11 +195,3 @@ This project is designed as an educational demonstration and should not be used 
 - Uses simplified parameters for demonstration
 - Does not implement full security measures needed for a production system
 - Focuses on demonstrating the algorithms rather than ensuring maximal security
-
-## License
-
-[MIT License](LICENSE)
-
-## Contributors
-
-- Bramha Bajannavar
