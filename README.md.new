@@ -1,0 +1,224 @@
+# HybridCrypt
+
+A hybrid encryption system that combines Hill Cipher (symmetric) and RSA (asymmetric) encryption algorithms for secure message exchange.
+
+![HybridCrypt Logo](./NewFrontend/public/placeholder-logo.svg)
+
+## Overview
+
+HybridCrypt demonstrates a practical implementation of hybrid cryptography, combining:
+
+- **Hill Cipher**: A symmetric encryption algorithm using a key matrix to encrypt plaintext
+- **RSA**: An asymmetric encryption algorithm used to securely encrypt the Hill Cipher key
+
+This approach leverages the efficiency of symmetric encryption for the message data, while using the security of asymmetric encryption for key exchange.
+
+## Features
+
+- ✅ Message encryption using Hill Cipher algorithm
+- ✅ Key encryption using RSA algorithm
+- ✅ Message decryption using either the original key or RSA-decrypted key
+- ✅ Modern web interface built with Next.js and React
+- ✅ RESTful API backend built in C++
+- ✅ Downloadable encryption results as JSON
+- ✅ File-based decryption of previously encrypted messages
+
+## Project Structure
+
+```
+HybridCrypt/
+├── backend/                 # C++ implementation of cryptography algorithms
+│   ├── hill_cipher.cpp      # Hill Cipher encryption algorithm
+│   ├── hill_cipher_decrypt.cpp # Hill Cipher decryption algorithm
+│   ├── http_server.cpp      # REST API server
+│   ├── rsa.cpp              # RSA encryption/decryption
+│   └── utils.*              # Utility functions
+│
+├── NewFrontend/            # Next.js frontend application
+│   ├── app/                # Page routes
+│   │   ├── api/            # API routes
+│   │   ├── encrypt/        # Encryption page
+│   │   └── decrypt/        # Decryption page
+│   ├── components/         # UI components
+│   └── lib/
+│       └── encryption.ts   # Frontend encryption implementation
+│
+└── frontend/              # Legacy frontend (to be deprecated)
+```
+
+## Prerequisites
+
+- **Backend**:
+  - C++17 compatible compiler
+  - Make or equivalent build tool
+  
+- **Frontend**:
+  - Node.js (v16.x or later)
+  - npm or yarn package manager
+
+## Installation
+
+### Backend
+
+```bash
+# Clone the repository
+git clone https://github.com/yourusername/hybridcrypt.git
+cd hybridcrypt
+
+# Set up the backend
+cd backend
+
+# Create include directory and download dependencies if needed
+mkdir -p include
+cd include
+curl -O https://raw.githubusercontent.com/yhirose/cpp-httplib/master/httplib.h
+curl -O https://raw.githubusercontent.com/nlohmann/json/develop/single_include/nlohmann/json.hpp
+cd ..
+
+# Build the backend
+make
+```
+
+### Frontend
+
+```bash
+# Navigate to the frontend directory
+cd ../NewFrontend
+
+# Install dependencies
+npm install --legacy-peer-deps
+
+# Build for production (optional)
+npm run build
+```
+
+## Usage
+
+### Starting the Servers
+
+```bash
+# Start the backend server (from the backend directory)
+cd backend
+./http_server
+
+# In a separate terminal, start the frontend development server
+cd NewFrontend
+npm run dev
+```
+
+By default, the backend server runs on port 5001 and the frontend on port 3000.
+
+### Encrypting Messages
+
+1. Navigate to http://localhost:3000/encrypt
+2. Enter the message you want to encrypt
+3. Input a Hill Cipher key matrix (e.g., "2 3\n1 4")
+4. Enter RSA public key parameters or use the defaults
+5. Click "Encrypt Message"
+6. Download the encryption result as a JSON file or copy values as needed
+
+### Decrypting Messages
+
+1. Navigate to http://localhost:3000/decrypt
+2. Choose one of these methods:
+   - Upload a previously downloaded encryption JSON file
+   - Enter the encrypted message and either:
+     - The original Hill Cipher key, or
+     - The RSA-encrypted key and your RSA private key
+3. Click "Decrypt Message"
+4. View your decrypted message
+
+## API Endpoints
+
+### `POST /api/encrypt`
+
+Encrypts a message using the Hill Cipher and encrypts the key with RSA.
+
+**Request:**
+```json
+{
+  "message": "YOUR_MESSAGE",
+  "hillKey": "2 3 1 4",
+  "rsaPublicKey": "3,33"
+}
+```
+
+**Response:**
+```json
+{
+  "encryptedMessage": "ENCRYPTED_TEXT",
+  "encryptedKey": [1, 2, 3, 4],
+  "timestamp": "2025-05-15 12:34:56"
+}
+```
+
+### `POST /api/decrypt`
+
+Decrypts a message using either the direct Hill Cipher key or by first decrypting the key with RSA.
+
+**Request (using direct Hill key):**
+```json
+{
+  "encryptedMessage": "ENCRYPTED_TEXT",
+  "hillKey": "2 3 1 4"
+}
+```
+
+**Request (using RSA):**
+```json
+{
+  "encryptedMessage": "ENCRYPTED_TEXT",
+  "encryptedKey": [1, 2, 3, 4],
+  "rsaPrivateKey": "7,33"
+}
+```
+
+**Response:**
+```json
+{
+  "decryptedMessage": "DECRYPTED_TEXT",
+  "timestamp": "2025-05-15 12:34:56"
+}
+```
+
+## Limitations
+
+- The Hill Cipher implementation only works with uppercase letters (A-Z)
+- Spaces and punctuation are stripped during encryption
+- Messages are padded with 'X' characters when needed
+- The RSA implementation uses simplified parameters (not suitable for production)
+
+## Development
+
+### Testing
+
+To run the backend integration test:
+```bash
+node test-integration.js
+```
+
+To run the frontend API integration test:
+```bash
+node frontend-test.js
+```
+
+## Future Enhancements
+
+See [TODO.md](./TODO.md) for planned improvements and known issues.
+
+## License
+
+This project is licensed under the MIT License - see the LICENSE file for details.
+
+## Credits
+
+- Hill Cipher algorithm: [Wikipedia](https://en.wikipedia.org/wiki/Hill_cipher)
+- RSA algorithm: [Wikipedia](https://en.wikipedia.org/wiki/RSA_(cryptosystem))
+- HTTP library: [cpp-httplib](https://github.com/yhirose/cpp-httplib)
+- JSON library: [nlohmann/json](https://github.com/nlohmann/json)
+- Frontend framework: [Next.js](https://nextjs.org/)
+- UI components: [shadcn/ui](https://ui.shadcn.com/)
+
+---
+
+Created with ❤️ for educational purposes only. Not intended for securing sensitive information.
