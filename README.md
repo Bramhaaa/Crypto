@@ -106,6 +106,8 @@ The frontend will be accessible at http://localhost:3000
 
 ## Usage
 
+### Encryption
+
 1. Open your browser and navigate to http://localhost:3000
 2. Click on "Encrypt" in the navigation menu
 3. Enter the message you want to encrypt
@@ -113,6 +115,16 @@ The frontend will be accessible at http://localhost:3000
 5. Enter RSA public key parameters (or use the defaults)
 6. Click "Encrypt Message"
 7. View the encryption results and download or copy as needed
+
+### Decryption
+
+1. Navigate to http://localhost:3000/decrypt
+2. Enter the encrypted message
+3. Choose one of these options:
+   - Upload a JSON file containing encrypted data from a previous encryption
+   - Enter the RSA private key and encrypted Hill Cipher key
+   - Enter the original Hill Cipher key directly if you have it
+4. Click "Decrypt Message" to recover the original message
 
 ## API Endpoints
 
@@ -141,33 +153,76 @@ The frontend will be accessible at http://localhost:3000
   }
   ```
 
+### POST /api/decrypt
+
+- Decrypts a message using either the original Hill Cipher key or the encrypted key with RSA private key
+- Request body (with Hill key):
+  ```json
+  {
+    "encryptedMessage": "ENCRYPTED_TEXT",
+    "hillKey": "2 3 1 4"
+  }
+  ```
+- Request body (with RSA):
+  ```json
+  {
+    "encryptedMessage": "ENCRYPTED_TEXT",
+    "encryptedKey": [1, 2, 3, 4],
+    "rsaPrivateKey": "..."
+  }
+  ```
+- Response:
+  ```json
+  {
+    "decryptedMessage": "DECRYPTED_TEXT",
+    "timestamp": "2025-05-12 12:34:56"
+  }
+  ```
+
 ## Project Structure
 
 ```
 .
 ├── backend/
-│   ├── hill_cipher.cpp  # Hill Cipher implementation
-│   ├── http_server.cpp  # HTTP server and API endpoints
-│   ├── hybrid_main.cpp  # CLI demo of the hybrid encryption
+│   ├── hill_cipher.cpp          # Hill Cipher encryption implementation
+│   ├── hill_cipher_decrypt.cpp  # Hill Cipher decryption implementation
+│   ├── http_server.cpp          # HTTP server and API endpoints
+│   ├── hybrid_main.cpp          # CLI demo of the hybrid encryption
 │   ├── Makefile
-│   ├── rsa.cpp          # RSA implementation
+│   ├── rsa.cpp                  # RSA implementation
 │   ├── utils.cpp
 │   ├── utils.h
 │   └── include/
-│       ├── httplib.h    # HTTP library
-│       └── json.hpp     # JSON library
+│       ├── httplib.h            # HTTP library
+│       └── json.hpp             # JSON library
 │
-└── frontend/
-    ├── app/
-    │   ├── encrypt/
-    │   │   └── page.tsx  # Encryption page
-    │   ├── results/
-    │   │   └── page.tsx  # Results display page
-    │   └── page.tsx      # Home page
-    ├── components/       # UI components
-    ├── lib/
-    │   └── encryption.ts # Frontend encryption implementation
-    └── package.json
+├── frontend/                    # Original frontend (deprecated)
+│   ├── app/
+│   │   ├── encrypt/
+│   │   │   └── page.tsx         # Encryption page
+│   │   ├── results/
+│   │   │   └── page.tsx         # Results display page
+│   │   └── page.tsx             # Home page
+│   ├── components/              # UI components
+│   ├── lib/
+│   │   └── encryption.ts        # Frontend encryption implementation
+│   └── package.json
+│
+├── NewFrontend/                 # New frontend with encryption and decryption
+│   ├── app/
+│   │   ├── encrypt/
+│   │   │   └── page.tsx         # Encryption page
+│   │   ├── decrypt/
+│   │   │   └── page.tsx         # Decryption page
+│   │   ├── results/
+│   │   │   └── page.tsx         # Results display page
+│   │   └── page.tsx             # Home page
+│   ├── components/              # UI components
+│   ├── lib/
+│   │   └── encryption.ts        # Frontend encryption/decryption implementation
+│   └── package.json
+│
+└── test-integration.js          # Integration test script
 ```
 
 ## Cryptographic Details
