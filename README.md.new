@@ -127,6 +127,8 @@ By default, the backend server runs on port 5001 and the frontend on port 3000.
      - The RSA-encrypted key and your RSA private key
 3. Click "Decrypt Message"
 4. View your decrypted message
+   - **Note**: The decrypted message will be in ALL CAPS and may have trailing 'X' characters used for padding
+   - You may need to manually convert case and remove trailing X's as needed
 
 ## API Endpoints
 
